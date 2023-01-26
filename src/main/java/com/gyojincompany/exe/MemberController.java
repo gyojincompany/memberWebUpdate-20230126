@@ -123,6 +123,12 @@ public class MemberController extends HttpServlet {
 				System.out.println("로그인 성공!!!");
 				viewPage = "/main.jsp";
 			}
+			
+		} else if(command.equals("/logout.do")) {
+			HttpSession session = request.getSession();
+			
+			session.invalidate();//로그 아웃(세션 삭제)
+			viewPage = "/login.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
