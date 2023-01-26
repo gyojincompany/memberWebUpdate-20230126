@@ -129,6 +129,22 @@ public class MemberController extends HttpServlet {
 			
 			session.invalidate();//로그 아웃(세션 삭제)
 			viewPage = "/login.jsp";
+		} else if(command.equals("/delete.do")) {
+			HttpSession session = request.getSession();
+			
+			String sessionId = (String) session.getAttribute("memberId");
+			
+			MemberDao dao = new MemberDao();
+			int resultFlag = dao.delete(sessionId);
+			//1이 반환되면 삭제 성공
+			
+			if(resultFlag == 1) {
+				session.invalidate();//세션 삭제->로그아웃
+				viewPage = "/login.jsp";
+			} else {
+				viewPage = "/main.jsp";
+			}
+			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

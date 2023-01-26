@@ -23,7 +23,7 @@
 	<form action="logout.do">
 		<input type="submit" value="로그아웃">
 		<input type="button" value="정보수정" onclick="javascript:window.location='modifyInfo.do'">
-		<input type="button" value="회원탈퇴" onclick="javascript:window.location='deleteOk.jsp'">
+		<input type="button" value="회원탈퇴" onclick="javascript:window.location='delete.do'">
 	</form>
 	
 	<%		
