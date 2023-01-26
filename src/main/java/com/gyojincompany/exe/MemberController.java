@@ -72,6 +72,15 @@ public class MemberController extends HttpServlet {
 //			dispatcher.forward(request, response);
 		} else if(command.equals("/modifyInfo.do")) {
 			
+			HttpSession session = request.getSession();
+			
+			String sessionId = (String) session.getAttribute("memberId");
+			
+			MemberDao dao = new MemberDao();
+			MemberDto dto = dao.getMemberInfo(sessionId);
+			
+			request.setAttribute("memberDto", dto);
+			
 			viewPage = "/modify.jsp";
 			
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/join.jsp");
