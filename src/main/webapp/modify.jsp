@@ -12,7 +12,7 @@
 	
 	<h2>회원 정보 수정</h2>
 	<hr>
-	<form action="modifyOk.jsp">
+	<form action="modifyOk.do">
 		아이디 : <input type="text" name="id" value="${memberDto.id }" readonly="readonly"><br><br>
 		비밀번호 : <input type="password" name="pw" value="${memberDto.password }"><br><br>
 		이름 : <input type="text" name="name" value="${memberDto.name }"><br><br>

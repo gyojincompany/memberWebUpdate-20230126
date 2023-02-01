@@ -221,7 +221,7 @@ public class MemberDao {
 			pstmt.setString(3, email);
 			pstmt.setString(4, id);
 			
-			resultFlag = pstmt.executeUpdate();//성공하면 1로 값이 변경
+			resultFlag = pstmt.executeUpdate();//정보 수정 성공하면 1로 값이 변경
 		
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -280,5 +280,8 @@ public class MemberDao {
 		return resultFlag;//1이면 정보삭제 성공
 		
 	}
+	
+	
+	
 	
 }

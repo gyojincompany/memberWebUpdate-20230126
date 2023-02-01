@@ -131,6 +131,8 @@ public class MemberController extends HttpServlet {
 				session.setAttribute("ValidSession", "yes");
 				System.out.println("로그인 성공!!!");
 				viewPage = "/main.jsp";
+			} else {
+				viewPage = "/login.jsp";
 			}
 			
 		} else if(command.equals("/logout.do")) {
@@ -154,7 +156,28 @@ public class MemberController extends HttpServlet {
 				viewPage = "/main.jsp";
 			}
 			
-		}
+		} else if(command.equals("/modifyOk.do")) {
+			
+			request.setCharacterEncoding("utf-8");
+			
+			String mid = request.getParameter("id");
+			String mpw = request.getParameter("pw");
+			String mname = request.getParameter("name");
+			String memail = request.getParameter("email");
+			
+			MemberDao dao = new MemberDao();
+			
+			int resultFlag = dao.modify(mid, mpw, mname, memail);//수정성공이면 1
+			
+			if(resultFlag == 1) {
+				MemberDto dto = dao.getMemberInfo(mid);
+				request.setAttribute("memberDto", dto);
+				viewPage = "/modifyOk.jsp";
+				
+			} else {//수정 실패했을 경우
+				viewPage = "/modify.jsp";
+			}
+		} 
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
